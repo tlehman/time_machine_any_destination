@@ -31,3 +31,17 @@ Next, you need to prepare a special directory on your network share, this second
 __Warning__: This script will take a while, you'll know when it's done when you `Finished! Happy backups!` in your terminal.
 
 _Explanation_: This script creates a disk image `name.sparsebundle`, where name is your computer name, the result of the command `scutil --get ComputerName`. The sparsebundle 'file' is really a directory, and the script creates an XML plist file inside it, and then copies it to `/your/network/share/name.sparsebundle`
+
+### Step 3
+
+You need to mount the sparsebundle file, all you have to do is open the file, and it will mount as `/Volumes/Time Machine Backups`, then run:
+
+```
+./3_set_destination.sh`
+```
+
+And enter your password if it prompts you. If you are uncomfortable blindly running scripts as super-user, I understand, read the script to make sure you know what you are doing.
+
+_Explanation:_ This uses the Time Machine utility, `tmutil` to set the Time Machine destination to the `/Volumes/Time Machine Backups` mount point.
+
+Now you can fire up Time Machine and start your backups!
