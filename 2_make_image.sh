@@ -4,6 +4,9 @@
 # This script probably only works for me, so try it at your own peril!
 # Use, distribute, and modify as you see fit but leave this header intact.
 # (R) sunkid - September 5, 2009
+#
+# I have successfully used this script on Mac OS X 10.9 (Mavericks)
+# tlehman - December 8, 2013
 
 usage ()
 {

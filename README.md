@@ -2,7 +2,7 @@
 
 Time Machine is a fine backup solution if you have a dedicated external hard drive, or if you have no problem with paying for a specialized Time Capsule.
 
-If you have a network volume, such as an NFS/CIFS/AFP share on a file server, you need to configure a few things in order for Time Machine to use it.
+If you have a network volume, such as an NFS, CIFS, AFP, or [πfs](https://github.com/philipl/pifs#readme) share on a file server, you need to configure a few things in order for Time Machine to use it.
 
 I found [this article](http://lifehacker.com/5691649/an-easier-way-to-set-up-time-machine-to-back-up-to-a-networked-windows-computer) which gives step-by-step instructions, but it involves executing some shell commands. I've distilled it into three scripts: 
 
@@ -12,10 +12,22 @@ I found [this article](http://lifehacker.com/5691649/an-easier-way-to-set-up-tim
  
 ### Step 1
 
-Run this script by cd-ing to this repository's directory, and type:
+Run this script by cd-ing to this repository's directory, and run:
 
 ``` 
 ./1_enable_network_volumes.sh
 ```
 
+_Explanation:_ This enables unsupported network volumes by setting `TMShowUnsupportedNetworkVolumes` to 1.
 
+### Step 2
+
+Next, you need to prepare a special directory on your network share, this second script will do that for you. Make sure you have your network share `/your/network/share` ready, and choose a maximum number of gigabytes, say `216`, and run:
+
+```
+./2_make_image.sh 216 /your/network/share
+```
+
+__Warning__: This script will take a while, you'll know when it's done when you `Finished! Happy backups!` in your terminal.
+
+_Explanation_: This script creates a disk image `name.sparsebundle`, where name is your computer name, the result of the command `scutil --get ComputerName`. The sparsebundle 'file' is really a directory, and the script creates an XML plist file inside it, and then copies it to `/your/network/share/name.sparsebundle`
