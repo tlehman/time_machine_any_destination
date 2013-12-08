@@ -37,7 +37,7 @@ _Explanation_: This script creates a disk image `name.sparsebundle`, where name 
 You need to mount the sparsebundle file, all you have to do is open the file, and it will mount as `/Volumes/Time Machine Backups`, then run:
 
 ```
-./3_set_destination.sh`
+./3_set_destination.sh
 ```
 
 And enter your password if it prompts you. If you are uncomfortable blindly running scripts as super-user, I understand, read the script to make sure you know what you are doing.
